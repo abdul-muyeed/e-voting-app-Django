@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Voting System</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 36px;
+            margin: 0;
+        }
+        .navbar {
+            background-color: #ffffff;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .navbar-nav .nav-link {
+            color: #007bff;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #0056b3;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .card img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+        .card-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .list-group-item {
+            border: none;
+            font-size: 16px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <h1>Voting System</h1>
+</header>
+
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container">
+        <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="about">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Contact">Contact</a>
+            </li>
+        </ul>
+        <a href="/logout" class="btn btn-primary">Logout</a>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                {% if image %}
+                <img src="{{ image.url}}" class="card-img-top mx-auto d-block mt-3" alt="Profile Image">
+                {% else %}
+                <img src="media/avatar.png  " class="card-img-top mx-auto d-block mt-3" alt="Profile Image">
+                {% endif %}
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ user }}</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item">First Name: {{ fname }}</li>
+                        <li class="list-group-item">Last Name: {{ lname }}</li>
+                        <li class="list-group-item">Email: {{ user.email }}</li>
+                        <li class="list-group-item">NID: {{ nid }}</li>
+                        <li class="list-group-item">Voter: {% if status %}Verified{% else %}Not Verified{% endif %}</li>
+                    </ul>
+                    <a href="/update" class="btn btn-primary mt-3">Edit Profile</a>
+                </div>
+            </div>
+        </div>
+
+       <div class="col-md-6">
+    {% if candidates %}
+    <div class="table-responsive"> <h2 class="text-center mb-4">List of Candidates for {{poll_title}}</h2>
+                <table class="table table-striped table-bordered align-middle">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col" class="text-center">Image</th>
+                    <th scope="col" class="text-center">Name</th>
+                    <th scope="col" class="text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for candidate in candidates %}
+                <tr>
+                    <td class="text-center"><img src="{{ candidate.image.url }}" class="img-thumbnail" alt="Candidate Image"></td>
+                    <td class="text-center">{{ candidate.user }}</td>
+                    <td class="text-center">
+                        {% if voted %}
+                        <span class="badge text-primary">Voted ({{ candidate.votes }})</span>
+                        {% else %}
+                        <a href="/vote/{{ candidate.id }}" class="btn btn-primary">Vote</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <h2 class="text-center">NO CANDIDATE FOUND</h2>
+    {% endif %}
+</div>
+
+    </div>
+</div>
+
+<script src="/static/js/bootstrap.bundle.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+</body>
+</html>

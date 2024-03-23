@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/css/style.css">
+
+</head>
+<body>
+<h1 class="text-center py-3 bg-primary text-light mb-5 fw-bold">Update Profile</h1>
+<div class="login-wrapper">
+<div class="login">
+
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+        <div class="form-floating  mb-4">
+      <input type="text" class="form-control" id="first_name" name="first_name" placeholder="first_name" value="{{fname}}">
+      <label for="first_name">First Name</label>
+    </div>
+        <div class="form-floating  mb-4">
+      <input type="text" class="form-control" id="last_name" name="last_name" placeholder="last_name" value="{{lname}}">
+      <label for="last_name">Last Name</label>
+    </div>
+        <div class="form-floating  mb-4">
+      <input type="text" class="form-control" id="nid" name="nid" placeholder="nid" value="{{nid}}">
+      <label for="nid">NID</label>
+    </div>
+
+        <div class="form-floating  mb-4">
+      <input type="file" class="form-control" id="image" accept="image/jpeg, image/png" name="image" placeholder="first_name" value="{{image}}">
+      <label for="image">Image</label>
+    </div>
+
+
+  <!-- 2 column grid layout for inline styling -->
+  <div class="row mb-4 mt-2">
+    <div class="col d-flex justify-content-center">
+      <button type="submit" class="btn btn-primary my-2 w-100" value="ok">Update</button>
+    </div>
+
+
+  </div>
+</form>
+</div>
+  </div>
+
+</body>
+<script src="/static/js/bootstrap.bundle.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+</html>
