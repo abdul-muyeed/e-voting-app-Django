@@ -149,5 +149,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 cloudinary.config(
     cloud_name="dl9dbwjm4",
     api_key="938617646417244",
-    api_secret="IP0iiAjpxWY6GvkKoNCtYsBaRTE"
+    api_secret="IP0iiAjpxWY6GvkKoNCtYsBaRTE",
+    api_proxy="http://proxy.server:3128"
 )
