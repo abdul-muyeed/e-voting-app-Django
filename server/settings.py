@@ -18,9 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
+
 
 
 
@@ -44,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
-    'cloudinary',
     'rest_framework',
 ]
 
@@ -146,9 +143,3 @@ MEDIA_ROOT = BASE_DIR / 'media'
 #     # ]
 #  }
 
-cloudinary.config(
-    cloud_name="dl9dbwjm4",
-    api_key="938617646417244",
-    api_secret="IP0iiAjpxWY6GvkKoNCtYsBaRTE",
-    api_proxy="http://proxy.server:3128"
-)

@@ -85,19 +85,17 @@ def home(request):
 
 def update(request):
     if request.method == "POST":
-        username = request.POST.get("username")
+        username = request.user.username
         first_name = request.POST.get("first_name")
         last_name = request.POST.get("last_name")
         nid = request.POST.get("nid")
         image = request.FILES.get("image")
         print("username", username, "first_name", first_name, "last_name", last_name, "nid", nid,
               "image", image)
-        # return HttpResponse("Data Updated")
-        # return HttpResponse("Data Updated")
         user = User.objects.get(username=request.user)
         if user is not None:
-            # image_ext = image.name.split(".")[-1]
-            # image.name = f"{username}.{image_ext}"
+            image_ext = image.name.split(".")[-1]
+            image.name = f"{username}.{image_ext}"
             voter = Voter.objects.filter(user=request.user).exists()
             print(voter)
             if not voter:

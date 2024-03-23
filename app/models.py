@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from cloudinary.models import CloudinaryField
 
 
 class BaseModel(models.Model):
@@ -13,7 +12,7 @@ class BaseModel(models.Model):
 
 class Voter(BaseModel):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='voter')
-    image = CloudinaryField('image', default='avatar.png')
+    image = models.ImageField(upload_to='', default='avatar.png')
     first_name = models.CharField(max_length=100, default='')
     last_name = models.CharField(max_length=100, default='')
     nid = models.CharField(max_length=20)
